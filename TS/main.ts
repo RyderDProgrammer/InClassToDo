@@ -29,8 +29,19 @@ function isValid():boolean
  */
 function getToDoItem():ToDoItem
 {
-    let x = new ToDoItem();
-    return x;
+    let chore = new ToDoItem();
+
+    let newChore = getInputElem("choreName");
+    chore.choreName = newChore.value;
+
+    let choreStart = getInputElem("startedChore");
+    chore.started = choreStart.checked;
+
+    let choreFinish = getInputElem("finishedChore");
+    chore.finished = choreFinish.checked;
+    
+    console.log(chore);
+    return chore;
 }
 
 /**

@@ -7,8 +7,15 @@ function isValid() {
     return true;
 }
 function getToDoItem() {
-    var x = new ToDoItem();
-    return x;
+    var chore = new ToDoItem();
+    var newChore = getInputElem("choreName");
+    chore.choreName = newChore.value;
+    var choreStart = getInputElem("startedChore");
+    chore.started = choreStart.checked;
+    var choreFinish = getInputElem("finishedChore");
+    chore.finished = choreFinish.checked;
+    console.log(chore);
+    return chore;
 }
 function displayToDoItem(item) {
 }
