@@ -3,6 +3,14 @@ var ToDoItem = (function () {
     }
     return ToDoItem;
 }());
+window.onload = function () {
+    var addToList = document.querySelector("input[type=button]");
+    addToList.onclick = addChore;
+};
+function addChore() {
+    var newChore = getToDoItem();
+    displayToDoItem(newChore);
+}
 function isValid() {
     return true;
 }
@@ -18,6 +26,20 @@ function getToDoItem() {
     return chore;
 }
 function displayToDoItem(item) {
+    var displayDiv = $("displayChores");
+    var choreStatus = "";
+    if (item.started) {
+        choreStatus = " have started it.";
+    }
+    else if (item.finished) {
+        choreStatus = " have finished it.";
+    }
+    else {
+        choreStatus = " better get a jump on it.";
+    }
+    var choreList = document.createElement("p");
+    choreList.innerText = "You have to do " + item.choreName + " and you " + choreStatus;
+    displayDiv.appendChild(choreList);
 }
 function $(id) {
     return document.getElementById(id);

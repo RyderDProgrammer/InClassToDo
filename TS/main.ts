@@ -16,6 +16,18 @@ item.choreName = "Test chore";
 item.started = true;    
 item.finished = false;  */
 
+window.onload = function()
+{
+    let addToList = <HTMLElement>document.querySelector("input[type=button]");
+    addToList.onclick = addChore;
+}
+
+function addChore()
+{
+    let newChore = getToDoItem();
+    displayToDoItem(newChore);
+}
+
 //Checks the forms data to ensure it is a valid input.
 function isValid():boolean
 {
@@ -39,7 +51,7 @@ function getToDoItem():ToDoItem
 
     let choreFinish = getInputElem("finishedChore");
     chore.finished = choreFinish.checked;
-    
+
     console.log(chore);
     return chore;
 }
@@ -49,7 +61,27 @@ function getToDoItem():ToDoItem
  */
 function displayToDoItem(item:ToDoItem):void
 {
+    let displayDiv = $("displayChores");
 
+    //Creating an element to display the chore that gets added to the div element to display your chore.
+    let choreStatus = "";
+    if(item.started)
+    {
+        choreStatus = " have started it."
+    }
+    else if(item.finished)
+    {
+        choreStatus = " have finished it."
+    }
+    else
+    {
+        choreStatus = " better get a jump on it."
+    }
+
+    let choreList = document.createElement("p");
+    
+    choreList.innerText = `You have to do ${item.choreName} and you ${choreStatus}`;
+    displayDiv.appendChild(choreList);
 }
 
 
