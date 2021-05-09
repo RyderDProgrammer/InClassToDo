@@ -24,8 +24,11 @@ window.onload = function()
 
 function addChore()
 {
-    let newChore = getToDoItem();
-    displayToDoItem(newChore);
+    if(isValid())
+    {
+        let newChore = getToDoItem();
+        displayToDoItem(newChore);
+    }
 }
 
 //Checks the forms data to ensure it is a valid input.
@@ -36,8 +39,7 @@ function isValid():boolean
 
 /**
  * Get all input off the form and wrap in a todo item object
- * @returns temporary X to ignore the line under the return
- * type.
+ * @returns the completed chore to get added to the list.
  */
 function getToDoItem():ToDoItem
 {
@@ -58,10 +60,14 @@ function getToDoItem():ToDoItem
 
 /**
  * Displays the todo item somewhere on the html page.
+ * IF the item is finished it will change the text of the item
+ * and cross it out of the list.
  */
 function displayToDoItem(item:ToDoItem):void
 {
     let displayDiv = $("displayChores");
+
+    let choreList = document.createElement("p");
 
     //Creating an element to display the chore that gets added to the div element to display your chore.
     let choreStatus = "";
@@ -78,8 +84,6 @@ function displayToDoItem(item:ToDoItem):void
         choreStatus = " better get a jump on it."
     }
 
-    let choreList = document.createElement("p");
-    
     choreList.innerText = `You have to do ${item.choreName} and you ${choreStatus}`;
     displayDiv.appendChild(choreList);
 }

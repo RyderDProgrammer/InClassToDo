@@ -8,8 +8,10 @@ window.onload = function () {
     addToList.onclick = addChore;
 };
 function addChore() {
-    var newChore = getToDoItem();
-    displayToDoItem(newChore);
+    if (isValid()) {
+        var newChore = getToDoItem();
+        displayToDoItem(newChore);
+    }
 }
 function isValid() {
     return true;
@@ -27,6 +29,7 @@ function getToDoItem() {
 }
 function displayToDoItem(item) {
     var displayDiv = $("displayChores");
+    var choreList = document.createElement("p");
     var choreStatus = "";
     if (item.started) {
         choreStatus = " have started it.";
@@ -37,7 +40,6 @@ function displayToDoItem(item) {
     else {
         choreStatus = " better get a jump on it.";
     }
-    var choreList = document.createElement("p");
     choreList.innerText = "You have to do " + item.choreName + " and you " + choreStatus;
     displayDiv.appendChild(choreList);
 }
