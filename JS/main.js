@@ -12,3 +12,9 @@ function getToDoItem() {
 }
 function displayToDoItem(item) {
 }
+function $(id) {
+    return document.getElementById(id);
+}
+function getInputElem(id) {
+    return $(id);
+}

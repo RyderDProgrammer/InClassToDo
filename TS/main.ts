@@ -41,4 +41,13 @@ function displayToDoItem(item:ToDoItem):void
 
 }
 
+
+function $(id:string)
+{
+    return document.getElementById(id);
+}
+function getInputElem(id:string):HTMLInputElement
+{
+    return <HTMLInputElement>$(id);
+}
 //Allow user to mark a todo item as completed.
