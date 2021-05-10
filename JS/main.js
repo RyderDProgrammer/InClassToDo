@@ -32,19 +32,24 @@ function displayToDoItem(item) {
     var choreList = document.createElement("p");
     choreList.classList.add("todoText");
     var choreStatus = "";
+    choreList.onclick = markAsComplete;
     if (item.started) {
         choreList.classList.add("started");
         choreStatus = " have started it.";
     }
     else if (item.finished) {
-        choreList.classList.add("completed");
         choreStatus = " have finished it.";
+        choreList.classList.add("completed");
     }
     else {
         choreStatus = " better get a jump on it.";
     }
     choreList.innerText = "You have to " + item.choreName + " and you " + choreStatus;
     displayDiv.appendChild(choreList);
+}
+function markAsComplete() {
+    var itemDiv = this;
+    itemDiv.classList.add("completed");
 }
 function $(id) {
     return document.getElementById(id);

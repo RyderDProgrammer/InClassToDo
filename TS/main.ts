@@ -3,7 +3,6 @@ class ToDoItem
     choreName:string;
     started:boolean;
     finished:boolean;
-
     /* constructor(newChoreName:string)
     // {
     //     this.choreName = newChoreName;
@@ -73,6 +72,9 @@ function displayToDoItem(item:ToDoItem):void
 
     //Creating an element to display the chore that gets added to the div element to display your chore.
     let choreStatus = "";
+
+    choreList.onclick = markAsComplete;
+
     if(item.started)
     {
         choreList.classList.add("started");
@@ -80,8 +82,8 @@ function displayToDoItem(item:ToDoItem):void
     }
     else if(item.finished)
     {
-        choreList.classList.add("completed");
         choreStatus = " have finished it."
+        choreList.classList.add("completed");
     }
     else
     {
@@ -92,6 +94,12 @@ function displayToDoItem(item:ToDoItem):void
     displayDiv.appendChild(choreList);
 }
 
+function markAsComplete()
+{
+    let itemDiv = <HTMLElement>this;
+    itemDiv.classList.add("completed");
+
+}
 
 function $(id:string)
 {

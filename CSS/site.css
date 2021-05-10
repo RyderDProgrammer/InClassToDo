@@ -3,6 +3,7 @@
     width: 30%;
     box-sizing: border-box;
     background-color: red;
+    cursor: pointer;
 }
 
 .completed
@@ -10,4 +11,5 @@
     margin-top: 2em;
     opacity: 85%;
     background-color: green;
+    text-decoration: line-through;
 }
