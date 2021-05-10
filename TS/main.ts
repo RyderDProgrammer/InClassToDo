@@ -75,10 +75,12 @@ function displayToDoItem(item:ToDoItem):void
     let choreStatus = "";
     if(item.started)
     {
+        choreList.classList.add("started");
         choreStatus = " have started it."
     }
     else if(item.finished)
     {
+        choreList.classList.add("completed");
         choreStatus = " have finished it."
     }
     else
