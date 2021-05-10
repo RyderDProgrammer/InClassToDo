@@ -35,16 +35,16 @@ function displayToDoItem(item) {
     choreList.onclick = markAsComplete;
     if (item.started) {
         choreList.classList.add("started");
-        choreStatus = " have started it.";
+        choreStatus = " and you have started it.";
     }
     else if (item.finished) {
         choreStatus = " have finished it.";
         choreList.classList.add("completed");
     }
     else {
-        choreStatus = " better get a jump on it.";
+        choreStatus = " and you better get a jump on it.";
     }
-    choreList.innerText = "You have to " + item.choreName + " and you " + choreStatus;
+    choreList.innerText = "You have to " + item.choreName + " " + choreStatus;
     displayDiv.appendChild(choreList);
 }
 function markAsComplete() {

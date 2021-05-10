@@ -78,7 +78,7 @@ function displayToDoItem(item:ToDoItem):void
     if(item.started)
     {
         choreList.classList.add("started");
-        choreStatus = " have started it."
+        choreStatus = " and you have started it."
     }
     else if(item.finished)
     {
@@ -87,10 +87,10 @@ function displayToDoItem(item:ToDoItem):void
     }
     else
     {
-        choreStatus = " better get a jump on it."
+        choreStatus = " and you better get a jump on it."
     }
 
-    choreList.innerText = `You have to ${item.choreName} and you ${choreStatus}`;
+    choreList.innerText = `You have to ${item.choreName} ${choreStatus}`;
     displayDiv.appendChild(choreList);
 }
 
@@ -98,7 +98,6 @@ function markAsComplete()
 {
     let itemDiv = <HTMLElement>this;
     itemDiv.classList.add("completed");
-
 }
 
 function $(id:string)
