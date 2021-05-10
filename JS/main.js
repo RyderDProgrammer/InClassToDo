@@ -30,6 +30,7 @@ function getToDoItem() {
 function displayToDoItem(item) {
     var displayDiv = $("displayChores");
     var choreList = document.createElement("p");
+    choreList.classList.add("todoText");
     var choreStatus = "";
     if (item.started) {
         choreStatus = " have started it.";
@@ -40,7 +41,7 @@ function displayToDoItem(item) {
     else {
         choreStatus = " better get a jump on it.";
     }
-    choreList.innerText = "You have to do " + item.choreName + " and you " + choreStatus;
+    choreList.innerText = "You have to " + item.choreName + " and you " + choreStatus;
     displayDiv.appendChild(choreList);
 }
 function $(id) {

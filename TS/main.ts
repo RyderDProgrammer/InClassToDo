@@ -67,7 +67,9 @@ function displayToDoItem(item:ToDoItem):void
 {
     let displayDiv = $("displayChores");
 
+    //Gives the P elements a class to work with CSS styling
     let choreList = document.createElement("p");
+    choreList.classList.add("todoText");
 
     //Creating an element to display the chore that gets added to the div element to display your chore.
     let choreStatus = "";
@@ -84,7 +86,7 @@ function displayToDoItem(item:ToDoItem):void
         choreStatus = " better get a jump on it."
     }
 
-    choreList.innerText = `You have to do ${item.choreName} and you ${choreStatus}`;
+    choreList.innerText = `You have to ${item.choreName} and you ${choreStatus}`;
     displayDiv.appendChild(choreList);
 }
 
