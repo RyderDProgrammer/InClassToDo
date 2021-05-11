@@ -22,29 +22,21 @@ function getToDoItem() {
     chore.choreName = newChore.value;
     var choreStart = getInputElem("startedChore");
     chore.started = choreStart.checked;
-    var choreFinish = getInputElem("finishedChore");
-    chore.finished = choreFinish.checked;
     console.log(chore);
     return chore;
 }
 function displayToDoItem(item) {
     var displayDiv = $("displayChores");
     var choreList = document.createElement("p");
-    choreList.classList.add("todoText");
     var choreStatus = "";
     choreList.onclick = markAsComplete;
     if (item.started) {
         choreList.classList.add("started");
-        choreStatus = " and you have started it.";
-    }
-    else if (item.finished) {
-        choreStatus = " have finished it.";
-        choreList.classList.add("completed");
     }
     else {
-        choreStatus = " and you better get a jump on it.";
+        choreList.classList.add("ignored");
     }
-    choreList.innerText = "You have to " + item.choreName + " " + choreStatus;
+    choreList.innerText = "You have to " + item.choreName;
     displayDiv.appendChild(choreList);
 }
 function markAsComplete() {

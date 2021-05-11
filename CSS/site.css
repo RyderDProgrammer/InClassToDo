@@ -1,7 +1,5 @@
-.todoText
+.started
 {
-    width: 30%;
-    box-sizing: border-box;
     background-color: red;
     cursor: pointer;
 }
@@ -12,4 +10,15 @@
     opacity: 85%;
     background-color: green;
     text-decoration: line-through;
+}
+
+.ignored
+{
+    background-color: tan;
+}
+
+.started,.completed,.ignored
+{
+    width: 30%;
+    box-sizing: border-box;
 }

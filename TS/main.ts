@@ -2,7 +2,6 @@ class ToDoItem
 {
     choreName:string;
     started:boolean;
-    finished:boolean;
     /* constructor(newChoreName:string)
     // {
     //     this.choreName = newChoreName;
@@ -50,9 +49,6 @@ function getToDoItem():ToDoItem
     let choreStart = getInputElem("startedChore");
     chore.started = choreStart.checked;
 
-    let choreFinish = getInputElem("finishedChore");
-    chore.finished = choreFinish.checked;
-
     console.log(chore);
     return chore;
 }
@@ -68,7 +64,6 @@ function displayToDoItem(item:ToDoItem):void
 
     //Gives the P elements a class to work with CSS styling
     let choreList = document.createElement("p");
-    choreList.classList.add("todoText");
 
     //Creating an element to display the chore that gets added to the div element to display your chore.
     let choreStatus = "";
@@ -78,19 +73,15 @@ function displayToDoItem(item:ToDoItem):void
     if(item.started)
     {
         choreList.classList.add("started");
-        choreStatus = " and you have started it."
-    }
-    else if(item.finished)
-    {
-        choreStatus = " have finished it."
-        choreList.classList.add("completed");
+        //choreStatus = " and you have started it."
     }
     else
     {
-        choreStatus = " and you better get a jump on it."
+        choreList.classList.add("ignored");
+        //choreStatus = " and you better get a jump on it."
     }
 
-    choreList.innerText = `You have to ${item.choreName} ${choreStatus}`;
+    choreList.innerText = `You have to ${item.choreName}`;
     displayDiv.appendChild(choreList);
 }
 
