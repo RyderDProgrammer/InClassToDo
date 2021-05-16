@@ -65,20 +65,15 @@ function displayToDoItem(item:ToDoItem):void
     //Gives the P elements a class to work with CSS styling
     let choreList = document.createElement("p");
 
-    //Creating an element to display the chore that gets added to the div element to display your chore.
-    let choreStatus = "";
-
     choreList.onclick = markAsComplete;
 
     if(item.started)
     {
         choreList.classList.add("started");
-        //choreStatus = " and you have started it."
     }
     else
     {
         choreList.classList.add("ignored");
-        //choreStatus = " and you better get a jump on it."
     }
 
     choreList.innerText = `You have to ${item.choreName}`;

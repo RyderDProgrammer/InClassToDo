@@ -15,6 +15,7 @@
 .ignored
 {
     background-color: tan;
+    cursor: pointer;
 }
 
 .started,.completed,.ignored

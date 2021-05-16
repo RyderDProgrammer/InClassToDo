@@ -28,7 +28,6 @@ function getToDoItem() {
 function displayToDoItem(item) {
     var displayDiv = $("displayChores");
     var choreList = document.createElement("p");
-    var choreStatus = "";
     choreList.onclick = markAsComplete;
     if (item.started) {
         choreList.classList.add("started");
