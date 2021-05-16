@@ -6,11 +6,13 @@ var ToDoItem = (function () {
 window.onload = function () {
     var addToList = document.querySelector("input[type=button]");
     addToList.onclick = addChore;
+    loadSavedItem();
 };
 function addChore() {
     if (isValid()) {
         var newChore = getToDoItem();
         displayToDoItem(newChore);
+        saveToDo(newChore);
     }
 }
 function isValid() {
@@ -47,4 +49,18 @@ function $(id) {
 }
 function getInputElem(id) {
     return $(id);
+}
+function saveToDo(item) {
+    var itemString = JSON.stringify(item);
+    localStorage.setItem(todoKey, itemString);
+}
+var todoKey = "todo";
+function getToDo() {
+    var itemString = localStorage.getItem(todoKey);
+    var item = JSON.parse(itemString);
+    return item;
+}
+function loadSavedItem() {
+    var item = getToDo();
+    displayToDoItem(item);
 }

@@ -18,6 +18,9 @@ window.onload = function()
 {
     let addToList = <HTMLElement>document.querySelector("input[type=button]");
     addToList.onclick = addChore;
+
+    //Load the saved item
+    loadSavedItem();
 }
 
 function addChore()
@@ -26,6 +29,7 @@ function addChore()
     {
         let newChore = getToDoItem();
         displayToDoItem(newChore);
+        saveToDo(newChore);
     }
 }
 
@@ -94,4 +98,34 @@ function getInputElem(id:string):HTMLInputElement
 {
     return <HTMLInputElement>$(id);
 }
+
+
 //Allow user to mark a todo item as completed.
+function saveToDo(item:ToDoItem):void
+{
+    //Converts a todoItem into a JSON string
+    let itemString = JSON.stringify(item);
+
+    //Saves the string.
+    localStorage.setItem(todoKey, itemString);
+}
+
+const todoKey = "todo";
+
+/**
+ * Gets stored todo item or returns a null value if none
+ * is found.
+ * @returns The todoItem from localStorage.
+ */
+function getToDo():ToDoItem
+{
+    let itemString = localStorage.getItem(todoKey);
+    let item:ToDoItem = JSON.parse(itemString);
+    return item;
+}
+
+function loadSavedItem()
+{
+    let item = getToDo(); //reads from the webstorage.
+    displayToDoItem(item); //Displays the item on the page
+}
