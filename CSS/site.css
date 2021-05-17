@@ -4,7 +4,7 @@
     cursor: pointer;
 }
 
-.completed
+.completed,#completedChores
 {
     opacity: 85%;
     background-color: green !important;
@@ -24,7 +24,7 @@
     box-sizing: border-box;
 }
 
-#displayChores
+#displayChores,#completedChores
 {
     display: flex;
     flex-direction: row;

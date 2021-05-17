@@ -79,7 +79,7 @@ function displayToDoItem(item:ToDoItem):void
     {
         choreList.classList.add("ignored");
     }
-
+    
     choreList.innerText = `You have to ${item.choreName}`;
     displayDiv.appendChild(choreList);
 }
@@ -88,6 +88,9 @@ function markAsComplete()
 {
     let itemDiv = <HTMLElement>this;
     itemDiv.classList.add("completed");
+
+    let completedChore = $("completedChores");
+    completedChore.appendChild(itemDiv);
 }
 
 function $(id:string)
@@ -103,29 +106,40 @@ function getInputElem(id:string):HTMLInputElement
 //Allow user to mark a todo item as completed.
 function saveToDo(item:ToDoItem):void
 {
-    //Converts a todoItem into a JSON string
-    let itemString = JSON.stringify(item);
+    let currentItems = getToDoItems();
+    if(currentItems == null) //No items found.
+    {
+        currentItems = new Array();
+    }
+    currentItems.push(item); //Add new item to the current array.
 
-    //Saves the string.
-    localStorage.setItem(todoKey, itemString);
+    //Converting items into String inside of the method.
+    let currentItemsString = JSON.stringify(currentItems);
+    localStorage.setItem(todoKey,currentItemsString);
+
 }
 
 const todoKey = "todo";
 
 /**
- * Gets stored todo item or returns a null value if none
- * is found.
+ * Gets stored todo items or returns a null value if none
+ * are found.
  * @returns The todoItem from localStorage.
  */
-function getToDo():ToDoItem
+function getToDoItems():ToDoItem[]
 {
     let itemString = localStorage.getItem(todoKey);
-    let item:ToDoItem = JSON.parse(itemString);
+    let item:ToDoItem[] = JSON.parse(itemString);
     return item;
 }
 
 function loadSavedItem()
 {
-    let item = getToDo(); //reads from the webstorage.
-    displayToDoItem(item); //Displays the item on the page
+    let itemArray = getToDoItems(); //reads from the webstorage.
+    //Updated
+    for(let i = 0; i < itemArray.length; i++)
+    {
+        let currItem = itemArray[i]
+        displayToDoItem(currItem); //Displays the item on the page
+    }
 }

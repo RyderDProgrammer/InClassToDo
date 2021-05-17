@@ -43,6 +43,8 @@ function displayToDoItem(item) {
 function markAsComplete() {
     var itemDiv = this;
     itemDiv.classList.add("completed");
+    var completedChore = $("completedChores");
+    completedChore.appendChild(itemDiv);
 }
 function $(id) {
     return document.getElementById(id);
@@ -51,16 +53,24 @@ function getInputElem(id) {
     return $(id);
 }
 function saveToDo(item) {
-    var itemString = JSON.stringify(item);
-    localStorage.setItem(todoKey, itemString);
+    var currentItems = getToDoItems();
+    if (currentItems == null) {
+        currentItems = new Array();
+    }
+    currentItems.push(item);
+    var currentItemsString = JSON.stringify(currentItems);
+    localStorage.setItem(todoKey, currentItemsString);
 }
 var todoKey = "todo";
-function getToDo() {
+function getToDoItems() {
     var itemString = localStorage.getItem(todoKey);
     var item = JSON.parse(itemString);
     return item;
 }
 function loadSavedItem() {
-    var item = getToDo();
-    displayToDoItem(item);
+    var itemArray = getToDoItems();
+    for (var i = 0; i < itemArray.length; i++) {
+        var currItem = itemArray[i];
+        displayToDoItem(currItem);
+    }
 }
