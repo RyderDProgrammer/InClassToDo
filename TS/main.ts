@@ -19,6 +19,9 @@ window.onload = function()
     let addToList = <HTMLElement>document.querySelector("input[type=button]");
     addToList.onclick = addChore;
 
+    let clearList = <HTMLInputElement>$("clearButton");
+    clearList.onclick = localClear;
+
     //Load the saved item
     loadSavedItem();
 }
@@ -31,6 +34,13 @@ function addChore()
         displayToDoItem(newChore);
         saveToDo(newChore);
     }
+}
+
+function localClear()
+{
+    localStorage.clear();
+    $("displayChores").innerHTML = "";
+    $("completedChores").innerHTML = "";
 }
 
 //Checks the forms data to ensure it is a valid input.

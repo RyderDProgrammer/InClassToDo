@@ -6,6 +6,8 @@ var ToDoItem = (function () {
 window.onload = function () {
     var addToList = document.querySelector("input[type=button]");
     addToList.onclick = addChore;
+    var clearList = $("clearButton");
+    clearList.onclick = localClear;
     loadSavedItem();
 };
 function addChore() {
@@ -14,6 +16,11 @@ function addChore() {
         displayToDoItem(newChore);
         saveToDo(newChore);
     }
+}
+function localClear() {
+    localStorage.clear();
+    $("displayChores").innerHTML = "";
+    $("completedChores").innerHTML = "";
 }
 function isValid() {
     return true;
