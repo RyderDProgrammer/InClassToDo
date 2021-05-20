@@ -2,6 +2,7 @@ class ToDoItem
 {
     choreName:string;
     started:boolean;
+    finished:boolean;
     /* constructor(newChoreName:string)
     // {
     //     this.choreName = newChoreName;
@@ -79,7 +80,11 @@ function displayToDoItem(item:ToDoItem):void
     //Gives the P elements a class to work with CSS styling
     let choreList = document.createElement("p");
 
-    choreList.onclick = markAsComplete;
+    //choreList.onclick = markAsComplete;
+
+    let itemDiv = document.createElement("div");
+    itemDiv.setAttribute("data-task-title", item.choreName);
+    itemDiv.onclick = markAsComplete;
 
     if(item.started)
     {
@@ -91,16 +96,57 @@ function displayToDoItem(item:ToDoItem):void
     }
     
     choreList.innerText = `You have to ${item.choreName}`;
-    displayDiv.appendChild(choreList);
+    itemDiv.appendChild(choreList);
+    displayDiv.appendChild(itemDiv);
 }
 
+/**
+ * If the item was incomplete it will be marked as completed
+ * and vice versa
+ */
 function markAsComplete()
 {
+    
     let itemDiv = <HTMLElement>this;
-    itemDiv.classList.add("completed");
+    console.log("Itemdiv is:");
+    console.log(itemDiv);
 
-    let completedChore = $("completedChores");
-    completedChore.appendChild(itemDiv);
+    if(itemDiv.classList.contains("completed"))
+    {
+        //Remove complete class is previously marked as completed.
+        itemDiv.classList.remove("completed");
+        let inProgressChores = $("displayChores");
+        inProgressChores.appendChild(itemDiv);
+    }
+    else
+    {
+        itemDiv.classList.add("completed");
+        let completedChore = $("completedChores");
+        completedChore.appendChild(itemDiv);
+    }
+
+    //Update the item in storage.
+    let allTodos = getToDoItems();
+    let currentTodoTitle = itemDiv.getAttribute("data-task-title");
+    for(let i = 0; i < allTodos.length; i++)
+    {
+        let upcomingChore = allTodos[i]; //Gets the ToDo out of the array.
+        if(upcomingChore.choreName == currentTodoTitle)
+        {
+            upcomingChore.started = !upcomingChore.started
+        }
+    }
+    savedAllTodos(allTodos);
+}
+
+/**
+ * Saves all items then clears out the list.
+ * @param allTodos the list to save
+ */
+function savedAllTodos(allTodos: ToDoItem[]) {
+    localStorage.setItem(todoKey, "");
+    let allItemsString = JSON.stringify(allTodos);
+    localStorage.setItem(todoKey, allItemsString);
 }
 
 function $(id:string)

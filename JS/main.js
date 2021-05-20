@@ -37,7 +37,9 @@ function getToDoItem() {
 function displayToDoItem(item) {
     var displayDiv = $("displayChores");
     var choreList = document.createElement("p");
-    choreList.onclick = markAsComplete;
+    var itemDiv = document.createElement("div");
+    itemDiv.setAttribute("data-task-title", item.choreName);
+    itemDiv.onclick = markAsComplete;
     if (item.started) {
         choreList.classList.add("started");
     }
@@ -45,13 +47,37 @@ function displayToDoItem(item) {
         choreList.classList.add("ignored");
     }
     choreList.innerText = "You have to " + item.choreName;
-    displayDiv.appendChild(choreList);
+    itemDiv.appendChild(choreList);
+    displayDiv.appendChild(itemDiv);
 }
 function markAsComplete() {
     var itemDiv = this;
-    itemDiv.classList.add("completed");
-    var completedChore = $("completedChores");
-    completedChore.appendChild(itemDiv);
+    console.log("Itemdiv is:");
+    console.log(itemDiv);
+    if (itemDiv.classList.contains("completed")) {
+        itemDiv.classList.remove("completed");
+        var inProgressChores = $("displayChores");
+        inProgressChores.appendChild(itemDiv);
+    }
+    else {
+        itemDiv.classList.add("completed");
+        var completedChore = $("completedChores");
+        completedChore.appendChild(itemDiv);
+    }
+    var allTodos = getToDoItems();
+    var currentTodoTitle = itemDiv.getAttribute("data-task-title");
+    for (var i = 0; i < allTodos.length; i++) {
+        var upcomingChore = allTodos[i];
+        if (upcomingChore.choreName == currentTodoTitle) {
+            upcomingChore.started = !upcomingChore.started;
+        }
+    }
+    savedAllTodos(allTodos);
+}
+function savedAllTodos(allTodos) {
+    localStorage.setItem(todoKey, "");
+    var allItemsString = JSON.stringify(allTodos);
+    localStorage.setItem(todoKey, allItemsString);
 }
 function $(id) {
     return document.getElementById(id);
