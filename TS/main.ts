@@ -149,7 +149,6 @@ function loadSavedItem()
     //Updated
     for(let i = 0; i < itemArray.length; i++)
     {
-        let currItem = itemArray[i]
-        displayToDoItem(currItem); //Displays the item on the page
+        displayToDoItem(itemArray[i]); //Displays the item on the page
     }
 }

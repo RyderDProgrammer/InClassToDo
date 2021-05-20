@@ -77,7 +77,6 @@ function getToDoItems() {
 function loadSavedItem() {
     var itemArray = getToDoItems();
     for (var i = 0; i < itemArray.length; i++) {
-        var currItem = itemArray[i];
-        displayToDoItem(currItem);
+        displayToDoItem(itemArray[i]);
     }
 }
