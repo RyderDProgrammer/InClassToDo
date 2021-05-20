@@ -3,10 +3,6 @@ class ToDoItem
     choreName:string;
     started:boolean;
     finished:boolean;
-    /* constructor(newChoreName:string)
-    // {
-    //     this.choreName = newChoreName;
-     }*/
 }
 
 //Fake chore to test the ToDoItem class
@@ -80,8 +76,6 @@ function displayToDoItem(item:ToDoItem):void
     //Gives the P elements a class to work with CSS styling
     let choreList = document.createElement("p");
 
-    //choreList.onclick = markAsComplete;
-
     let itemDiv = document.createElement("div");
     itemDiv.setAttribute("data-task-title", item.choreName);
     itemDiv.onclick = markAsComplete;
@@ -89,15 +83,25 @@ function displayToDoItem(item:ToDoItem):void
     if(item.started)
     {
         choreList.classList.add("started");
+        choreList.innerText = `You have to ${item.choreName}`;
+        itemDiv.appendChild(choreList);
+        displayDiv.appendChild(itemDiv);
+    }
+    else if(item.finished)
+    {
+        choreList.classList.add("completed");
+        let completeDiv = $("completedChores");
+        choreList.innerText = `You finished ${item.choreName}`;
+        itemDiv.appendChild(choreList);
+        completeDiv.appendChild(itemDiv)
     }
     else
     {
         choreList.classList.add("ignored");
+        choreList.innerText = `You have to ${item.choreName}`;
+        itemDiv.appendChild(choreList);
+        displayDiv.appendChild(itemDiv);
     }
-    
-    choreList.innerText = `You have to ${item.choreName}`;
-    itemDiv.appendChild(choreList);
-    displayDiv.appendChild(itemDiv);
 }
 
 /**
@@ -133,7 +137,7 @@ function markAsComplete()
         let upcomingChore = allTodos[i]; //Gets the ToDo out of the array.
         if(upcomingChore.choreName == currentTodoTitle)
         {
-            upcomingChore.started = !upcomingChore.started
+            upcomingChore.finished = !upcomingChore.finished
         }
     }
     savedAllTodos(allTodos);

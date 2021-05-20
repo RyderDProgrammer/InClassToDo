@@ -42,13 +42,23 @@ function displayToDoItem(item) {
     itemDiv.onclick = markAsComplete;
     if (item.started) {
         choreList.classList.add("started");
+        choreList.innerText = "You have to " + item.choreName;
+        itemDiv.appendChild(choreList);
+        displayDiv.appendChild(itemDiv);
+    }
+    else if (item.finished) {
+        choreList.classList.add("completed");
+        var completeDiv = $("completedChores");
+        choreList.innerText = "You finished " + item.choreName;
+        itemDiv.appendChild(choreList);
+        completeDiv.appendChild(itemDiv);
     }
     else {
         choreList.classList.add("ignored");
+        choreList.innerText = "You have to " + item.choreName;
+        itemDiv.appendChild(choreList);
+        displayDiv.appendChild(itemDiv);
     }
-    choreList.innerText = "You have to " + item.choreName;
-    itemDiv.appendChild(choreList);
-    displayDiv.appendChild(itemDiv);
 }
 function markAsComplete() {
     var itemDiv = this;
@@ -69,7 +79,7 @@ function markAsComplete() {
     for (var i = 0; i < allTodos.length; i++) {
         var upcomingChore = allTodos[i];
         if (upcomingChore.choreName == currentTodoTitle) {
-            upcomingChore.started = !upcomingChore.started;
+            upcomingChore.finished = !upcomingChore.finished;
         }
     }
     savedAllTodos(allTodos);
