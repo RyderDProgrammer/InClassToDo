@@ -43,6 +43,10 @@ function localClear()
 //Checks the forms data to ensure it is a valid input.
 function isValid():boolean
 {
+    if(getInputElem("choreName").value.length == 0)
+    {
+        return false;
+    }
     return true;
 }
 

@@ -23,6 +23,9 @@ function localClear() {
     $("completedChores").innerHTML = "";
 }
 function isValid() {
+    if (getInputElem("choreName").value.length == 0) {
+        return false;
+    }
     return true;
 }
 function getToDoItem() {
