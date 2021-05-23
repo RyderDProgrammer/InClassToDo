@@ -4,7 +4,7 @@
     cursor: pointer;
 }
 
-.completed
+.completed,.finished
 {
     opacity: 85%;
     background-color: green !important;
@@ -31,4 +31,9 @@
     flex-wrap: wrap;
     justify-content: space-around;
     border: 3px solid red;
+}
+
+span
+{
+    color: red;
 }

@@ -24,8 +24,12 @@ function localClear() {
 }
 function isValid() {
     if (getInputElem("choreName").value.length == 0) {
+        var spanGrabber_1 = document.querySelector("span");
+        spanGrabber_1.innerHTML = "Cant be blank!";
         return false;
     }
+    var spanGrabber = document.querySelector("span");
+    spanGrabber.innerHTML = "*";
     return true;
 }
 function getToDoItem() {

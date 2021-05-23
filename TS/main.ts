@@ -45,8 +45,12 @@ function isValid():boolean
 {
     if(getInputElem("choreName").value.length == 0)
     {
+        let spanGrabber = <HTMLElement>document.querySelector("span");
+        spanGrabber.innerHTML = "Cant be blank!";
         return false;
     }
+    let spanGrabber = <HTMLElement>document.querySelector("span");
+    spanGrabber.innerHTML = "*";
     return true;
 }
 
