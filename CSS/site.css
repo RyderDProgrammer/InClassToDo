@@ -4,11 +4,12 @@
     cursor: pointer;
 }
 
-.completed,.finished
+.completed
 {
     opacity: 85%;
     background-color: green !important;
     text-decoration: line-through;
+    background-image: repeating-linear-gradient(white 0px, white 24px, teal 25px);
 }
 
 .ignored
@@ -36,4 +37,9 @@
 span
 {
     color: red;
+}
+
+body
+{
+    background: #ffc;
 }
