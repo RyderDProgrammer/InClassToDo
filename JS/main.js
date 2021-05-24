@@ -42,35 +42,38 @@ function getToDoItem() {
     return chore;
 }
 function displayToDoItem(item) {
-    var displayDiv = $("displayChores");
-    var choreList = document.createElement("p");
+    var itemText = document.createElement("h3");
+    itemText.innerText = item.choreName;
     var itemDiv = document.createElement("div");
     itemDiv.setAttribute("data-task-title", item.choreName);
     itemDiv.onclick = markAsComplete;
-    if (item.started) {
-        choreList.classList.add("started");
-        choreList.innerText = "You have to " + item.choreName;
-        itemDiv.appendChild(choreList);
-        displayDiv.appendChild(itemDiv);
+    itemDiv.classList.add("todo");
+    if (item.finished) {
+        itemDiv.classList.add("completed");
     }
-    else if (item.finished) {
-        choreList.classList.add("completed");
-        var completeDiv = $("completedChores");
-        choreList.innerText = "You finished " + item.choreName;
-        itemDiv.appendChild(choreList);
-        completeDiv.appendChild(itemDiv);
+    itemDiv.appendChild(itemText);
+    if (item.finished) {
+        itemText.innerHTML = "You finished " + item.choreName;
+        var completedTodo = $("completedChores");
+        completedTodo.appendChild(itemDiv);
     }
     else {
-        choreList.classList.add("ignored");
-        choreList.innerText = "You have to " + item.choreName;
-        itemDiv.appendChild(choreList);
-        displayDiv.appendChild(itemDiv);
+        if (item.started) {
+            itemText.innerHTML = "You have to " + item.choreName;
+            var startTodo = $("displayChores");
+            startTodo.classList.add("started");
+            startTodo.appendChild(itemDiv);
+        }
+        else {
+            itemText.innerHTML = "Better get started on " + item.choreName;
+            var slackingTodo = $("displayChores");
+            slackingTodo.classList.add("ignored");
+            slackingTodo.appendChild(itemDiv);
+        }
     }
 }
 function markAsComplete() {
     var itemDiv = this;
-    console.log("Itemdiv is:");
-    console.log(itemDiv);
     if (itemDiv.classList.contains("completed")) {
         itemDiv.classList.remove("completed");
         var inProgressChores = $("displayChores");

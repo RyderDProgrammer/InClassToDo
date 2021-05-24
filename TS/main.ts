@@ -79,12 +79,49 @@ function getToDoItem():ToDoItem
  */
 function displayToDoItem(item:ToDoItem):void
 {
-    let displayDiv = $("displayChores");
+    //let displayDiv = $("displayChores");
 
-    //Gives the P elements a class to work with CSS styling
-    let choreList = document.createElement("p");
+    let itemText = document.createElement("h3");
+    itemText.innerText = item.choreName;
 
     let itemDiv = document.createElement("div");
+    itemDiv.setAttribute("data-task-title", item.choreName);
+    itemDiv.onclick = markAsComplete;
+
+    itemDiv.classList.add("todo");
+    if(item.finished)
+    {
+        itemDiv.classList.add("completed");
+    }
+
+    itemDiv.appendChild(itemText);
+    if(item.finished)
+    {
+        itemText.innerHTML = `You finished ${item.choreName}`;
+        let completedTodo = $("completedChores");
+        completedTodo.appendChild(itemDiv);
+    }
+    else
+    {
+        if(item.started)
+        {
+            itemText.innerHTML = `You have to ${item.choreName}`;
+            let startTodo = $("displayChores");
+            startTodo.classList.add("started");
+            startTodo.appendChild(itemDiv);
+        }
+        else
+        {
+            itemText.innerHTML = `Better get started on ${item.choreName}`;
+            let slackingTodo = $("displayChores");
+            slackingTodo.classList.add("ignored");
+            slackingTodo.appendChild(itemDiv);
+        }
+    }
+    //Gives the P elements a class to work with CSS styling
+    //let choreList = document.createElement("p");
+
+    /*let itemDiv = document.createElement("div");
     itemDiv.setAttribute("data-task-title", item.choreName);
     itemDiv.onclick = markAsComplete;
 
@@ -109,7 +146,7 @@ function displayToDoItem(item:ToDoItem):void
         choreList.innerText = `You have to ${item.choreName}`;
         itemDiv.appendChild(choreList);
         displayDiv.appendChild(itemDiv);
-    }
+    }*/
 }
 
 /**
@@ -120,8 +157,6 @@ function markAsComplete()
 {
     
     let itemDiv = <HTMLElement>this;
-    console.log("Itemdiv is:");
-    console.log(itemDiv);
 
     if(itemDiv.classList.contains("completed"))
     {
