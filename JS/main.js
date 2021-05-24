@@ -49,6 +49,7 @@ function displayToDoItem(item) {
     itemDiv.onclick = markAsComplete;
     itemDiv.classList.add("todo");
     if (item.finished) {
+        itemDiv.classList.remove("todo");
         itemDiv.classList.add("completed");
     }
     itemDiv.appendChild(itemText);

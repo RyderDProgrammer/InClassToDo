@@ -12,9 +12,9 @@
     background-image: repeating-linear-gradient(white 0px, white 24px, teal 25px);
 }
 
-.ignored
+.ignored,#todo,.todo
 {
-    background-color: tan;
+    background-color: tan !important;
     cursor: pointer;
 }
 

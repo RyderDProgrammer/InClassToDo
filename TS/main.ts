@@ -91,6 +91,7 @@ function displayToDoItem(item:ToDoItem):void
     itemDiv.classList.add("todo");
     if(item.finished)
     {
+        itemDiv.classList.remove("todo");
         itemDiv.classList.add("completed");
     }
 
