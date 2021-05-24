@@ -12,7 +12,7 @@
     background-image: repeating-linear-gradient(white 0px, white 24px, teal 25px);
 }
 
-.ignored,#todo,.todo
+.ignored
 {
     background-color: tan !important;
     cursor: pointer;
@@ -20,18 +20,23 @@
 
 .started,.completed,.ignored
 {
-    width: 100%;
+    width: 25%;
     margin-right: 1.5em;
+    margin-bottom: 1.5em;
     box-sizing: border-box;
 }
 
 #displayChores
 {
+    border: 3px solid black;
+}
+
+h3,#displayChores
+{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
-    border: 3px solid red;
 }
 
 span

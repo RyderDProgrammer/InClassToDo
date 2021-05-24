@@ -94,6 +94,16 @@ function displayToDoItem(item:ToDoItem):void
         itemDiv.classList.remove("todo");
         itemDiv.classList.add("completed");
     }
+    else if(item.started)
+    {
+        itemDiv.classList.remove("todo");
+        itemDiv.classList.add("started");
+    }
+    else
+    {
+        itemDiv.classList.remove("todo");
+        itemDiv.classList.add("ignored");
+    }
 
     itemDiv.appendChild(itemText);
     if(item.finished)
@@ -108,14 +118,12 @@ function displayToDoItem(item:ToDoItem):void
         {
             itemText.innerHTML = `You have to ${item.choreName}`;
             let startTodo = $("displayChores");
-            startTodo.classList.add("started");
             startTodo.appendChild(itemDiv);
         }
         else
         {
             itemText.innerHTML = `Better get started on ${item.choreName}`;
             let slackingTodo = $("displayChores");
-            slackingTodo.classList.add("ignored");
             slackingTodo.appendChild(itemDiv);
         }
     }

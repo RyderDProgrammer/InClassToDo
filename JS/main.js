@@ -52,6 +52,14 @@ function displayToDoItem(item) {
         itemDiv.classList.remove("todo");
         itemDiv.classList.add("completed");
     }
+    else if (item.started) {
+        itemDiv.classList.remove("todo");
+        itemDiv.classList.add("started");
+    }
+    else {
+        itemDiv.classList.remove("todo");
+        itemDiv.classList.add("ignored");
+    }
     itemDiv.appendChild(itemText);
     if (item.finished) {
         itemText.innerHTML = "You finished " + item.choreName;
@@ -62,13 +70,11 @@ function displayToDoItem(item) {
         if (item.started) {
             itemText.innerHTML = "You have to " + item.choreName;
             var startTodo = $("displayChores");
-            startTodo.classList.add("started");
             startTodo.appendChild(itemDiv);
         }
         else {
             itemText.innerHTML = "Better get started on " + item.choreName;
             var slackingTodo = $("displayChores");
-            slackingTodo.classList.add("ignored");
             slackingTodo.appendChild(itemDiv);
         }
     }
