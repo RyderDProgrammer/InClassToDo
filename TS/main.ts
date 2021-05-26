@@ -127,35 +127,6 @@ function displayToDoItem(item:ToDoItem):void
             slackingTodo.appendChild(itemDiv);
         }
     }
-    //Gives the P elements a class to work with CSS styling
-    //let choreList = document.createElement("p");
-
-    /*let itemDiv = document.createElement("div");
-    itemDiv.setAttribute("data-task-title", item.choreName);
-    itemDiv.onclick = markAsComplete;
-
-    if(item.started)
-    {
-        choreList.classList.add("started");
-        choreList.innerText = `You have to ${item.choreName}`;
-        itemDiv.appendChild(choreList);
-        displayDiv.appendChild(itemDiv);
-    }
-    else if(item.finished)
-    {
-        choreList.classList.add("completed");
-        let completeDiv = $("completedChores");
-        choreList.innerText = `You finished ${item.choreName}`;
-        itemDiv.appendChild(choreList);
-        completeDiv.appendChild(itemDiv)
-    }
-    else
-    {
-        choreList.classList.add("ignored");
-        choreList.innerText = `You have to ${item.choreName}`;
-        itemDiv.appendChild(choreList);
-        displayDiv.appendChild(itemDiv);
-    }*/
 }
 
 /**
